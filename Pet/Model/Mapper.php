@@ -33,6 +33,9 @@ abstract class Pet_Model_Mapper {
     protected function __clone()
     {}
 
+    abstract protected static function getInstance();
+    abstract protected static function getCachedInstance();
+
     /**
      * @static
      * @param  $object

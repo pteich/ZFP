@@ -9,7 +9,7 @@
  * @subpackage Pet_Domain
  * @copyright  Copyright (c) 2009 Peter Teich
  */
-class Pet_Domain_Repository
+abstract class Pet_Domain_Repository
 {
 
     /* @var array Injects für DAO-Elemente */

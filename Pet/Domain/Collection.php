@@ -8,7 +8,7 @@
  * @copyright  Copyright (c) 2009 Peter Teich
  */
 
-class Pet_Domain_Collection implements Countable, Iterator, ArrayAccess
+abstract class Pet_Domain_Collection implements Countable, Iterator, ArrayAccess
 {
     /**
      * @var array elements.
