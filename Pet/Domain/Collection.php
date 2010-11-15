@@ -5,7 +5,7 @@
  * @category   Domain
  * @package    Pet
  * @subpackage Pet_Domain
- * @copyright  Copyright (c) 2009 Peter Teich
+ * @abstract
  */
 
 abstract class Pet_Domain_Collection implements Countable, Iterator, ArrayAccess

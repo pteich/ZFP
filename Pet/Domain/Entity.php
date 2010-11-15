@@ -1,11 +1,10 @@
 <?php
 /**
- * Einzelnes echtes Model
+ * Single Model with magic getter/setter methods
  *
- * @category   Eigene
+ * @category   Domain
  * @package    Pet
  * @subpackage Pet_Domain
- * @copyright  Copyright (c) 2009 Peter Teich
  * @abstract
  */
 
