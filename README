@@ -1,9 +1,9 @@
-Collection of my Zend Framework extensions for common use cases
+Collection of my Zend Framework (1.x) extensions for common use cases
 
 ** Domain Layer / Data Access
 In many cases a high complex domain layer is too difficult to handle in a ZF application. So I use an approach with
 a moderate complexity that uses a data mapper to communicate between domain models and database tables.
-A mapper creates domain models (entities or collections). Every mappe belongs to one data access object (table gateway).
+A mapper creates domain models (entities or collections). Each mapper belongs to one data access object (table gateway).
 The domain models can utilize any mapper to lazy load sub-models. (Although this violates a clean domain layer,
 I like this approach because it's easy to know where to get my data without the need of too many objects.)
 
@@ -18,10 +18,10 @@ All configuration is done in application.ini. It's possible to get normal access
 Pet_Application_Resource_Maintenance - application resource to activate and configure a maintenance mode
 Pet_Controller_Plugin_Maintenance - controller plugin to change routing
 
-Configuraton example for application.ini
+Configuraton example for application.ini 
 ; Maintenance
 resources.maintenance.enabled = false
-resources.maintenance.pluginname = "Zmuek_Controller_Plugin_Maintenance"
+resources.maintenance.pluginname = "Pet_Controller_Plugin_Maintenance"
 resources.maintenance.target.action = 'index'
 resources.maintenance.target.controller = 'maintenance'
 resources.maintenance.target.module = 'default'
