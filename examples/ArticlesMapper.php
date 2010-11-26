@@ -50,10 +50,20 @@ class Model_ArticlesMapper extends Pet_Model_Mapper
     public function fetchAllWithUser()
     {
         $usersMapper = Model_UsersMapper::getCachedInstance();
-        $select = $this->getDbTable()->select()->from(array('a'=>$this->getDbTable()->info(Pet_Db_Table::NAME)));
+        $select = $this->getDbTable()->select()->from(
+            array(
+                 'a' => $this->getDbTable()->info(Pet_Db_Table::NAME)
+            )
+        );
         $select->setIntegrityCheck(false);
         // join the users table with prefixed coloum names - ready for use
-        $select->joinLeft(array('u'=>$usersMapper->getDbTable()->info(Pet_Db_Table::NAME)),'u.id=a.user_id',$usersMapper->getDbTable()->getColsWithPrefix());
+        $select->joinLeft(
+            array(
+                'u'=>$usersMapper->getDbTable()->info(Pet_Db_Table::NAME)
+            ),
+            'u.id=a.user_id',
+            $usersMapper->getDbTable()->getColsWithPrefix()
+        );
 
         $rows = $select->query()->fetchAll(Zend_Db::FETCH_ASSOC);
         return $this->initCollection($rows);
