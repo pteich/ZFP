@@ -8,7 +8,7 @@
  * @abstract
  */
 
-abstract class Pet_Domain_Entity
+abstract class Pet_Domain_Entity implements ArrayAccess
 {
     /**
      * Class properties
@@ -182,4 +182,45 @@ abstract class Pet_Domain_Entity
         return $this->data[$classname.'_'.$id];
     }
 
+    /**
+     * Returns value for given key
+     * @param  $offset string
+     * @return string|int
+     */
+    public function offsetGet($offset)
+    {
+        return $this->properties[$offset];
+    }
+
+    /**
+     * Unset a value of the model
+     * @param  $offset string
+     * @return void
+     */
+    public function offsetUnset($offset)
+    {
+        unset($this->properties[$offset]);
+    }
+
+    /**
+     * Set a value of the model
+     * @param  $offset string
+     * @param  $value
+     * @return void
+     */
+    public function offsetSet($offset, $value)
+    {
+        $this->properties[$offset] = $value;
+    }
+
+    /**
+     * Check if a key exists
+     * @param  $offset string
+     * @return bool
+     */
+    public function offsetExists($offset)
+    {
+        return array_key_exists($offset, $this->properties);
+    }
+    
 }
