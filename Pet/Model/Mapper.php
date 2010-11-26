@@ -128,10 +128,7 @@ abstract class Pet_Model_Mapper {
     {
         $objs = array();
         foreach ($rows as $row) {
-            if (is_object($row)) {
-                $row = $row->toArray();
-            }
-            $objs[] = new Application_Model_Partner($row);
+            $objs[] = $this->initModel($row);
         }
         return new $this->collectionName($objs);
     }
