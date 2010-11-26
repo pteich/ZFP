@@ -143,5 +143,29 @@ abstract class Pet_Model_Mapper {
         return $this->initModel($this->getDbTable()->find($id)->current());
     }
 
+    /**
+     * @param  $data array|Pet_Domain_Entity
+     * @return Pet_Domain_Entity
+     */
+    public function save($data)
+    {
+        if (key_exists('id',$data) && $data['id']>0) {
+            $row = $this->getDbTable()->find($data['id'])->current();
+        } else {
+            $row = $this->getDbTable()->createRow();
+        }
+
+        foreach($data as $key=>$value) {
+            if ($value) {
+                $row->{$key} = $value;
+            }
+        }
+
+        $row->save();
+        $this->cleanCache();
+
+        return $this->initModel($row);
+    }
+
 
 }
