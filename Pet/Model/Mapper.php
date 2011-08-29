@@ -16,6 +16,8 @@ abstract class Pet_Model_Mapper {
     protected $entityName = null;
     /** @var string */
     protected $collectionName = null;
+    /** @var string */
+    protected $primaryKeyName = 'id';
 
     /**
      * Singleton pattern implementation makes "new" unavailable
@@ -149,8 +151,8 @@ abstract class Pet_Model_Mapper {
      */
     public function save($data)
     {
-        if (key_exists('id',$data) && $data['id']>0) {
-            $row = $this->getDbTable()->find($data['id'])->current();
+        if (key_exists($this->primaryKeyName,$data) && $data[$this->primaryKeyName]>0) {
+            $row = $this->getDbTable()->find($data[$this->primaryKeyName])->current();
         } else {
             $row = $this->getDbTable()->createRow();
         }

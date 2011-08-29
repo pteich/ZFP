@@ -29,7 +29,9 @@ abstract class Pet_Domain_Entity implements ArrayAccess
         if (is_object($properties)) {
             $properties = $properties->toArray();
         }
-        $this->define($properties);
+        if (is_array($properties)) {
+            $this->define($properties);
+        }
     }
 
     /**
