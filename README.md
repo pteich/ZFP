@@ -1,4 +1,7 @@
-Collection of my Zend Framework (1.x) extensions for common use cases
+ZFP - Zend Framework Extensions
+===============================
+
+Collection of my Zend Framework (1.x) extensions for common use cases.
 
 Domain Layer / Data Access
 --------------------------
