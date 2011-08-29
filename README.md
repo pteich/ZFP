@@ -23,7 +23,8 @@ All configuration is done in application.ini. It's possible to get normal access
 Pet_Application_Resource_Maintenance - application resource to activate and configure a maintenance mode
 Pet_Controller_Plugin_Maintenance - controller plugin to change routing
 
-Configuraton example for application.ini 
+Configuraton example for application.ini
+ 
     ; Maintenance
     resources.maintenance.enabled = false
     resources.maintenance.pluginname = "Pet_Controller_Plugin_Maintenance"
@@ -38,6 +39,7 @@ Settings is a resource module to access any settings that can be set via applica
 All settings are available by use of regsitry key 'settings'.
 
 Configuraton example for application.ini
+
     ; Settings
     resources.settings.thumb.path = '/my/path'
     resources.settings.thumb.cachetime = 6400
