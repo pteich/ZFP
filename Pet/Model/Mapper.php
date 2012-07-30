@@ -46,7 +46,15 @@ abstract class Pet_Model_Mapper {
     protected static function setupCache($object)
     {
         $cache = self::getCache();
+
+        // set cached object
         $frontendOptions['cached_entity'] = $object;
+
+        // get frontend options from cache
+        $frontendOptions['lifetime'] = $cache->getOption('lifetime');
+        $frontendOptions['automatic_cleaning_factor'] = $cache->getOption('automatic_cleaning_factor');
+
+        // set up methods that should not be cached
         $frontendOptions['non_cached_methods'] = array('getCached', 'cleanCache', 'enableLogging', 'getNonCached', '_setupCache');
         try {
             $cache = Zend_Cache::factory('Class', $cache->getBackend(), $frontendOptions);
