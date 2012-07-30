@@ -122,25 +122,33 @@ abstract class Pet_Model_Mapper {
 
     /**
      * Returns associated entity model
-     * @param array|object $data
-     * @return Pet_Domain_Entity
+     * @param array|Zend_Db_Table_Row $data
+     * @return bool|Pet_Domain_Entity
      */
     public function initModel($data)
     {
-        return new $this->entityName($data);
+        if ($data) {
+            return new $this->entityName($data);
+        } else {
+            return false;
+        }
     }
 
     /**
-     * @param array|object $rows
-     * @return
+     * @param array|Zend_Db_Table_Row $rows
+     * @return bool|Pet_Domain_Collection
      */
     public function initCollection($rows)
     {
-        $objs = array();
-        foreach ($rows as $row) {
-            $objs[] = $this->initModel($row);
+        if ($rows) {
+            $objs = array();
+            foreach ($rows as $row) {
+                $objs[] = $this->initModel($row);
+            }
+            return new $this->collectionName($objs);
+        } else {
+            return false;
         }
-        return new $this->collectionName($objs);
     }
 
     /**
