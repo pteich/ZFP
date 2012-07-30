@@ -167,7 +167,7 @@ abstract class Pet_Model_Mapper {
      */
     public function save($data)
     {
-        if (key_exists($this->primaryKeyName,$data) && $data[$this->primaryKeyName]>0) {
+        if (array_key_exists($this->primaryKeyName,$data) && $data[$this->primaryKeyName]>0) {
             $row = $this->getDbTable()->find($data[$this->primaryKeyName])->current();
         } else {
             $row = $this->getDbTable()->createRow();
