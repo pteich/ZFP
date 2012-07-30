@@ -47,7 +47,7 @@ abstract class Pet_Domain_Entity implements ArrayAccess
                 $message = sprintf('Class property "%s" already defined.', $property);
                 throw new Pet_Domain_Exception($message);
             }
-            $this->properties[$property] = $value;
+            $this->properties[strtolower($property)] = $value;
         }
     }
 
@@ -224,5 +224,5 @@ abstract class Pet_Domain_Entity implements ArrayAccess
     {
         return array_key_exists($offset, $this->properties);
     }
-    
+
 }
