@@ -154,11 +154,16 @@ abstract class Pet_Model_Mapper {
     /**
      * Fetches model by primary key of associated DAO
      * @param int $id
-     * @return Pet_Domain_Entity
+     * @return bool|Pet_Domain_Entity
+     * @throws Pet_Domain_Exception
      */
     public function fetchById($id)
     {
-        return $this->initModel($this->getDbTable()->find($id)->current());
+        $row = $this->initModel($this->getDbTable()->find($id)->current());
+        if (!$row) {
+            throw new Pet_Domain_Exception(get_class($this).' '.$id.' not found!');
+        }
+        return $this->initModel($row);
     }
 
     /**
