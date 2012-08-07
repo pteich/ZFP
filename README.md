@@ -20,7 +20,7 @@ So if you have a **users** table to store user accounts you will end with the fo
 Object | Usage
 :------------ | :-------------
 Application_Model_DbTable_Users | table gateway 
-Application_Model_UsersMapper | he mapper that handles all selects, saves data, place here all db handling 
+Application_Model_UsersMapper | the mapper that handles all selects, saves data, place here all db handling 
 Application_Model_User | one user object, place here helper methods that affect one user
 Application_Model_Users | a collection of users, place here helper methods that affect a user list, every single user is still an Application_Model_User
 
