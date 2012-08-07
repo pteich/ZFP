@@ -11,9 +11,22 @@ A mapper creates domain models (entities or collections). Each mapper belongs to
 The domain models can utilize any mapper to lazy load sub-models. (Although this violates a clean domain layer,
 I like this approach because it's easy to know where to get my data without the need of too many objects.)
 
-Pet_Domain_xx - domain model, classes for model entities and collections
-Pet_Model_Mapper - data mapper between table gateway and domain models
-Pet_Db_Table - table gateway
+**Pet_Domain_xx** - domain model, classes for model entities and collections
+**Pet_Model_Mapper** - data mapper between table gateway and domain models
+**Pet_Db_Table** - table gateway
+
+So if you have a **users** table to store user accounts you will end with the following objects:
+
+Object | Usage
+:------------ | :-------------
+Application_Model_DbTable_Users | table gateway 
+Application_Model_UsersMapper | he mapper that handles all selects, saves data, place here all db handling 
+Application_Model_User | one user object, place here helper methods that affect one user
+Application_Model_Users | a collection of users, place here helper methods that affect a user list, every single user is still an Application_Model_User
+
+
+Have a look at the examples to find a working real live implementation.
+
 
 Maintenance Mode
 ----------------
