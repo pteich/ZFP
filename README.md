@@ -49,3 +49,14 @@ or
 
     ; Settings
     resources.settings = APPLICATION_PATH "/configs/settings.ini"
+    
+CLI Mode
+--------
+With cli.php it is possible to run every Zend Framework action from the command line. The script has to be located in the scripts directory at the project root level.
+In order to work it needs a stripped down custom router Pet_Controller_Router_Cli that inherits from Zend_Controller_Router_Abstract and implements the Zend_Controller_Router_Interface.
+You have to pass module name, controller and action to the cli.php as well as optional parameters just as you were accessing it via URL.
+
+	cd MyProjectRoot
+	php ./scripts/cli.php -a "admin/index/maintenance/debug/1"
+	
+This will run the maintenance action in your index controller in the admin module and passes a parameter debug with the value 1 to it. Using the -e option you can optionally specify an environement. Default is production.
