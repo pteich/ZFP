@@ -163,7 +163,8 @@ abstract class Pet_Domain_Entity implements ArrayAccess
         if (method_exists($mapper,'getClassname')) {
             $classname = $mapper->getClassname();
         } else {
-        $classname = get_class($mapper);
+            $classname = get_class($mapper);
+        }
         if (!array_key_exists($classname.'_'.$id,$this->data)) {
             // get coloumn names with prefix
             try {
