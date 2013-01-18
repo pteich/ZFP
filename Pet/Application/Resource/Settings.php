@@ -11,17 +11,22 @@ class Pet_Application_Resource_Settings
 
     public function init()
     {
-        $settings = $this->getOptions();
+        $settingsoptions = $this->getOptions();
 
-        if (is_array($settings)) {
-            $settings = new Zend_Config($settings);
-        } else {
-            if (is_file($settings)) {
-                $settings = new Zend_Config_Ini($settings,$this->getBootstrap()->getEnvironment());
-            } else {
-                throw new Zend_Exception('settings can either be an path to an ini file or an array with values');
+        $settings = new Zend_Config($settingsoptions,true);
+
+        if ($settingsoptions['file']) {
+            foreach($settingsoptions['file'] as $file) {
+                if (is_file($file)) {
+                    $settings->merge(new Zend_Config_Ini($file,$this->getBootstrap()->getEnvironment()));
+                }
             }
         }
+
+        if (Zend_Registry::isRegistered('settings')) {
+            $settings->merge(Zend_Registry::get('settings'));
+        }
+
         Zend_Registry::set('settings', $settings);
         return $settings;
     }
