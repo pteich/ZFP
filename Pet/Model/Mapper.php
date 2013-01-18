@@ -159,7 +159,7 @@ abstract class Pet_Model_Mapper {
      */
     public function fetchById($id)
     {
-        $row = $this->initModel($this->getDbTable()->find($id)->current());
+        $row = $this->getDbTable()->find($id)->current();
         if (!$row) {
             throw new Pet_Domain_Exception(get_class($this).' '.$id.' not found!');
         }
@@ -172,6 +172,10 @@ abstract class Pet_Model_Mapper {
      */
     public function save($data)
     {
+        if (!is_array($data)) {
+            $data = $data->toArray();
+        }
+
         if (array_key_exists($this->primaryKeyName,$data) && $data[$this->primaryKeyName]>0) {
             $row = $this->getDbTable()->find($data[$this->primaryKeyName])->current();
         } else {
@@ -190,5 +194,20 @@ abstract class Pet_Model_Mapper {
         return $this->initModel($row);
     }
 
+    public function delete($target)
+    {
+        if (is_object($target) && get_class($target)==$this->entityName) {
+            $this->getDbTable()->delete("id=".$target->id);
+        } else {
+            $this->getDbTable()->delete("id=".$target);
+        }
+
+        $this->cleanCache();
+    }
+
+    public function getClassname()
+    {
+        return get_class($this);
+    }
 
 }

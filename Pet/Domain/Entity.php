@@ -154,14 +154,17 @@ abstract class Pet_Domain_Entity implements ArrayAccess
 
     /**
      * Returns a submodel by checking for existing coloumns with prefix or initializing a new object
-     * @param  string $mapper name of mapper class
+     * @param  Pet_Model_Mapper $mapper name of mapper class
      * @param  int $id id of sub model
      * @return Pet_Domain_Entity
      */
     protected function initSubModel($mapper,$id)
     {
+        if (method_exists($mapper,'getClassname')) {
+            $classname = $mapper->getClassname();
+        } else {
         $classname = get_class($mapper);
-        if (!$this->data[$classname.'_'.$id]) {
+        if (!array_key_exists($classname.'_'.$id,$this->data)) {
             // get coloumn names with prefix
             try {
                 $cols = $mapper->getDbTable()->getColsWithPrefix();
