@@ -165,4 +165,18 @@ abstract class Pet_Domain_Collection implements Countable, Iterator, ArrayAccess
         $this->_iteratorCount = count($this->_elements);
         reset($this->_elements);
     }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        $elements = array();
+        for($i=0;$i<count($this->_elements);$i++) {
+            $elements[] = $this->_elements[$i]->toArray();
+        }
+
+        return $elements;
+    }
+
 }
