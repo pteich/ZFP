@@ -11,6 +11,28 @@
 class Pet_Db_Table extends Zend_Db_Table
 {
 
+
+    /**
+     * Initialize database adapter.
+     *
+     * @return void
+     * @throws Zend_Db_Table_Exception
+     */
+    protected function _setupDatabaseAdapter()
+    {
+        if (!$this->_db) {
+            if ($this->_adapter) {
+                $this->_db = Zend_Registry::get($this->_adapter);
+            } else {
+                $this->_db = self::getDefaultAdapter();
+                if (!$this->_db instanceof Zend_Db_Adapter_Abstract) {
+                    require_once 'Zend/Db/Table/Exception.php';
+                    throw new Zend_Db_Table_Exception('No adapter found for ' . get_class($this));
+                }
+            }
+        }
+    }
+
     /*
      * @var Zend_Db_Table
      */
